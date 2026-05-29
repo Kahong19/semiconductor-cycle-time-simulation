@@ -1,62 +1,63 @@
-# Semiconductor Manufacturing Cycle Time Simulation
+# Semiconductor Manufacturing Cycle Time Simulation (V1 → V2)
 
 ## Overview
 
-This project simulates a simplified semiconductor manufacturing process to analyze cycle time behavior under stochastic process variability.  
-The goal is to demonstrate how variability impacts production planning and why tail-risk metrics (P90/P95) are important in operational decision-making.
+This repository contains an evolving simulation framework for semiconductor manufacturing cycle time analysis.
 
----
+The project demonstrates how stochastic process variability affects production performance, and how modeling evolves from process-level simulation (V1) to system-level behavior analysis (V2).
 
-## Problem Motivation
+## Project Evolution
 
-In semiconductor manufacturing, cycle time is not deterministic due to process variability across different production stages such as lithography, etching, cleaning, and testing.
+# V1 – Cycle Time Model
+Focus: Process-level simulation
 
-Traditional planning often relies on average cycle time, which can underestimate delivery risk.
+- Cycle time analysis per wafer lot
+- Process variability modeling
+- P90 / P95 planning metrics
+- Sensitivity analysis under variability
 
-This project explores:
-- How variability affects cycle time distribution
-- Why mean-based planning is insufficient
-- How tail metrics can improve planning robustness
+Insight:
+Demonstrates how variability affects cycle time distribution at the process level.
 
----
+# V2 – Fab System Model
+Focus: System-level behavior
 
-## Model Design
+- Queueing effects and WIP accumulation
+- Capacity and utilization modeling
+- Bottleneck identification under load
+- System instability under high utilization
+- Scenario-based planning and decision analysis
 
-The system simulates wafer lots flowing through 4 sequential process steps:
+Insight:
+Demonstrates that system performance is driven not only by process time, but by interactions between arrival rate, capacity, and queue dynamics.
 
-- Lithography
-- Etching
-- Cleaning
-- Testing
+## Key Conceptual Shift
 
-Each process step is modeled using a normal distribution:
+V1 → Process Thinking
 
-- Mean = nominal process time
-- Std = process variability
+V2 → System Thinking
 
-Lot arrivals are generated using an exponential distribution to simulate stochastic job arrivals.
+From:
+Independent lot cycle time modeling
 
----
+To:
+Interdependent system dynamics with congestion effects
 
-## Key Features
+## Core Insights
 
-- Stochastic process simulation
-- Cycle time computation per lot
-- Statistical analysis (mean, std, distribution)
-- Tail-risk metrics (P90, P95)
-- Variability sensitivity analysis (+50% std scenario)
-- Comparative scenario visualization
+Mean cycle time is insufficient for planning decisions
+P90 / P95 better represent operational risk
+System congestion emerges from utilization > capacity
+Bottlenecks are dynamic under load, not static
+Variability has amplified impact at system level
 
----
+## Repository Structure
 
-## Key Insights
+V1_Cycle_Time_Model/
+Original cycle time simulation (process-level model)
 
-- Mean cycle time remains relatively stable under increased variability
-- P90 and P95 cycle times increase significantly with higher variability
-- System performance is highly sensitive to process variation
-- Planning should incorporate buffer based on tail-risk metrics, not just averages
-
----
+V2_Fab_System_Model/
+Enhanced system-level simulation (queueing + planning model)
 
 ## Tech Stack
 
@@ -66,17 +67,6 @@ Lot arrivals are generated using an exponential distribution to simulate stochas
 - Matplotlib
 - Jupyter Notebook
 
----
-
-## Files
-
-- `fab_simulation.ipynb` → main simulation notebook
-- `fab_simulation.html` → exported interactive report
-- `fab_simulation.pdf` → printable report version
-
----
-
 ## How to Run
 
-```bash
 pip install numpy pandas matplotlib
